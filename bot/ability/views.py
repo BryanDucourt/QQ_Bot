@@ -17,3 +17,4 @@ def test(request):
             resp['group_id'] = gid
             resp['message'] = message
             requests.post("http://127.0.0.1:5700/send_group_message",data=resp)
+    return JsonResponse({})
