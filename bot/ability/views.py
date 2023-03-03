@@ -9,8 +9,6 @@ def test(request):
     param = json.loads(request.body)
 
     if param['post_type'] == 'message':
-        r = requests.post("http://127.0.0.1:5700/get_msg", data={'message_id': param['message_id']})
-        print(r.json())
         if param['message_type']=='group':
             gid = param['group_id']
             raw_message = param['raw_message']
