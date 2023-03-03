@@ -11,9 +11,7 @@ def test(request):
         if param['message_type']=='group':
             gid = param['group_id']
             uid = param['sender']['user_id']
-            message = param['raw_message']
             resp['group_id'] = gid
-            resp['message'] = message
+            resp['message'] = '爬啊你个寄吧'
             r = requests.post("http://127.0.0.1:5700/send_group_msg",data=resp)
-            print(r.json())
     return JsonResponse({})
