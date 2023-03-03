@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+import requests
 from django.http import JsonResponse
 # Create your views here.
 def test(request):
@@ -15,6 +16,4 @@ def test(request):
             message = param['raw_message']
             resp['group_id'] = gid
             resp['message'] = message
-            return JsonResponse(resp)
-    else:
-        return JsonResponse(resp)
+            requests.post("http://127.0.0.1:5700/send_group_message",data=resp)
