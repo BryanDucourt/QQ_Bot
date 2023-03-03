@@ -8,6 +8,7 @@ def test(request):
     param = json.loads(request.body)
     print(param['post_type'])
     if param['post_type'] == 'message':
+        print(param['message_type'])
         if param['message_type']=='group':
             gid = param['group_id']
             uid = param['sender']['user_id']
