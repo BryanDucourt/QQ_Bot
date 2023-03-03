@@ -13,4 +13,6 @@ def test(request):
             message = param['raw_message']
             resp['group_id'] = gid
             resp['message'] = message
-            JsonResponse(resp)
+            return JsonResponse(resp)
+    else:
+        return JsonResponse(resp)
