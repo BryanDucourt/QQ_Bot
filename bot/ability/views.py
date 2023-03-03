@@ -12,6 +12,6 @@ def test(request):
             gid = param['group_id']
             uid = param['sender']['user_id']
             resp['group_id'] = gid
-            resp['message'] = '爬啊你个寄吧'
+            resp['message'] = f'[CQ:at,qq={uid}]爬啊你个寄吧'
             r = requests.post("http://127.0.0.1:5700/send_group_msg",data=resp)
     return JsonResponse({})
