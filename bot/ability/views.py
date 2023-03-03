@@ -7,7 +7,10 @@ def test(request):
     resp ={}
 
     param = json.loads(request.body)
+
     if param['post_type'] == 'message':
+        r = requests.post("http://127.0.0.1:5700/get_msg", data={'message_id': param['message_id']})
+        print(r.json())
         if param['message_type']=='group':
             gid = param['group_id']
             raw_message = param['raw_message']
@@ -15,8 +18,8 @@ def test(request):
             message = raw_message.split()
             if len(message)!=1:
                 code = message[0][4:6]
-                print(param)
-                print(code, message[0][10:-1],param['self_id'])
+                # print(param)
+                # print(code, message[0][10:-1],param['self_id'])
                 if code=='at' and message[0][10:-1]==param['self_id']:
                     resp['group_id'] = gid
                     resp['message'] = f'[CQ:at,qq={uid}]爬啊你个寄吧'
