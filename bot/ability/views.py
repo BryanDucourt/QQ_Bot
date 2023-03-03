@@ -6,6 +6,7 @@ def test(request):
     resp ={}
 
     param = json.loads(request.body)
+    print(param['post_type'])
     if param['post_type'] == 'message':
         if param['message_type']=='group':
             gid = param['group_id']
