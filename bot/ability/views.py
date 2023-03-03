@@ -9,9 +9,13 @@ def test(request):
     param = json.loads(request.body)
     if param['post_type'] == 'message':
         if param['message_type']=='group':
-            print(param)
             gid = param['group_id']
+            raw_message = param['raw_message']
             uid = param['sender']['user_id']
+            message = raw_message.split()
+            if len(message)!=1:
+                code = message[0][5:7]
+                print(code)
             resp['group_id'] = gid
             resp['message'] = f'[CQ:at,qq={uid}]爬啊你个寄吧'
             r = requests.post("http://127.0.0.1:5700/send_group_msg",data=resp)
