@@ -15,7 +15,7 @@ def test(request):
             message = raw_message.split()
             if len(message)!=1:
                 code = message[0][4:6]
-                print(code, message[0][10:-1]==param['self_id'])
+                print(code, message[0][10:-1],param['self_id'])
                 if code=='at' and message[0][10:-1]==param['self_id']:
                     resp['group_id'] = gid
                     resp['message'] = f'[CQ:at,qq={uid}]爬啊你个寄吧'
