@@ -14,6 +14,6 @@ def test(request):
             message = param['raw_message']
             resp['group_id'] = gid
             resp['message'] = message
-            r = requests.post("http://127.0.0.1:5700/send_group_message",data=resp)
+            r = requests.post("http://127.0.0.1:5700/send_group_msg",data=resp)
             print(r.json())
     return JsonResponse({})
