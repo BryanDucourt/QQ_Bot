@@ -2,7 +2,7 @@ from django.shortcuts import render
 import json
 import requests
 from django.http import JsonResponse
-from functions import on_idea,on_jiba,on_empty
+from .functions import on_idea,on_jiba,on_empty
 # Create your views here.
 def test(request):
     param = json.loads(request.body)
