@@ -2,12 +2,10 @@ from django.shortcuts import render
 import json
 import requests
 from django.http import JsonResponse
+from functions import on_idea,on_jiba,on_empty
 # Create your views here.
 def test(request):
-    resp ={}
-
     param = json.loads(request.body)
-
     if param['post_type'] == 'message':
         if param['message_type']=='group':
             gid = param['group_id']
@@ -17,7 +15,10 @@ def test(request):
 
             code = message[0]
             if code=='/jiba':
-                resp['group_id'] = gid
-                resp['message'] = f'[CQ:at,qq={uid}]爬啊你个寄吧'
-                r = requests.post("http://127.0.0.1:5700/send_group_msg",data=resp)
+                on_jiba(uid,gid)
+            elif code == '/idea':
+                if len(message)==1:
+                    on_empty(uid,gid)
+                else:
+                    on_idea(uid,gid,message[1])
     return JsonResponse({})
